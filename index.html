@@ -1,73 +1,637 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRMNIA-Nut Cameroun | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>RMNCAH Cameroon / SRMNEA-Nut Cameroun</title>
     <style>
-        :root { --color-primary: #1e3a8a; --color-primary-light: #3b82f6; --color-accent: #e11d48; --color-bg: #f8fafc; --color-text: #0f172a; --color-text-light: #475569; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--color-bg); color: var(--color-text); }
-        
-        .navbar-content { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
-        
-        /* Sélecteur de langue visible et stylisé */
-        .lang-switch { display: flex; gap: 0.5rem; align-items: center; }
-        .lang-btn { background: white; border: 1px solid var(--color-primary); padding: 0.4rem 0.8rem; cursor: pointer; border-radius: 6px; font-size: 0.85rem; font-weight: 700; transition: all 0.3s; }
-        .lang-btn.active { background: var(--color-primary); color: white; }
+        /* CSS Reset & Variables */
+        :root {
+            --primary-red: #8b3a3a;
+            --primary-gold: #b59c49;
+            --primary-green: #1e7b51;
+            --primary-blue: #a4d3d8;
+            --bg-light: #f9f9f9;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --border-color: #e0e0e0;
+            --font-main: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-gold);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 5%;
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+            cursor: pointer;
+        }
+
+        .lang-switcher span {
+            cursor: pointer;
+            padding: 0 10px;
+            transition: opacity 0.3s;
+        }
+
+        .lang-switcher span:hover, .lang-switcher span.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        /* Header */
+        .header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--primary-red);
+            font-style: italic;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background-color: var(--bg-light);
+            border-bottom: 2px solid var(--primary-red);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav-bar a {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-bar a:hover {
+            color: var(--primary-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(139, 58, 58, 0.9), rgba(181, 156, 73, 0.9)), url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%23ffffff" fill-opacity="0.1"/></svg>');
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 40px;
+            padding: 40px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            color: var(--primary-red);
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        /* Indicators Grid */
+        .indicators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .indicator-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--primary-gold);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .indicator-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .ind-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-red);
+            margin: 10px 0;
+        }
+
+        /* Strategy Cards */
+        .strategy-card {
+            background: var(--bg-light);
+            padding: 20px;
+            border-left: 4px solid var(--primary-green);
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .strategy-card h4 {
+            color: var(--primary-green);
+            margin-bottom: 5px;
+        }
+
+        /* Financing Section */
+        .finance-content {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .finance-chart {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--primary-red) 0% 70%, 
+                var(--primary-gold) 70% 85%, 
+                var(--primary-green) 85% 100%
+            );
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .finance-legend {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .finance-legend li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+        }
+
+        /* Right Sidebar (Submissions / Buttons) */
+        .sidebar-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .side-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .side-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .btn-red { background-color: var(--primary-red); }
+        .btn-gold { background-color: var(--primary-gold); }
+        .btn-green { background-color: var(--primary-green); }
+        .btn-blue { background-color: var(--primary-blue); color: var(--text-dark); }
+
+        .side-link-group {
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .side-link-group a {
+            display: block;
+            padding: 10px 0;
+            color: var(--text-gray);
+            border-bottom: 1px solid var(--border-color);
+            transition: color 0.3s;
+        }
+
+        .side-link-group a:hover {
+            color: var(--primary-red);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 30px 5%;
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .finance-content {
+                flex-direction: column;
+            }
+            .nav-bar {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar" style="background: white; border-bottom: 1px solid #e2e8f0;">
-        <div class="container navbar-content">
-            <div class="logo" data-i18n="nav.logo">SRMNIA-Nut CMR</div>
-            
-            <div style="display: flex; align-items: center; gap: 2rem;">
-                <ul class="nav-links" style="display: flex; list-style: none; gap: 1.5rem;">
-                    <li><a href="#indicateurs" data-i18n="nav.indicators">Indicateurs</a></li>
-                    <li><a href="#financement" data-i18n="nav.finance">Financement</a></li>
-                </ul>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="social-icons">
+            <!-- Icons placeholders -->
+            <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.324V1.325C24 .597 23.403 0 22.675 0z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.847-3.037-1.85 0-2.13 1.445-2.13 2.939v5.667H9.362V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <div class="lang-switcher">
+            <span id="btn-en" class="active" onclick="setLanguage('en')">English</span> | 
+            <span id="btn-fr" onclick="setLanguage('fr')">Français</span>
+        </div>
+    </div>
 
-                <!-- Sélecteur de langue placé hors de la liste pour être toujours visible -->
-                <div class="lang-switch">
-                    <button class="lang-btn active" onclick="setLanguage('fr', this)">FR</button>
-                    <button class="lang-btn" onclick="setLanguage('en', this)">EN</button>
-                </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-icon">C</div>
+            <div class="logo-text">
+                <h1 data-i18n="logo_main">Women and girls</h1>
+                <p data-i18n="logo_sub">Women's, Children's & Adolescents' Health</p>
             </div>
         </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="nav-bar">
+        <a href="#indicators" data-i18n="nav_indicators">Indicators</a>
+        <a href="#financing" data-i18n="nav_financing">Financing</a>
+        <a href="#rmncah" data-i18n="nav_rmncah">RMNCAH Strategy</a>
+        <a href="#sss" data-i18n="nav_sss">SSS Framework</a>
     </nav>
 
+    <!-- Hero -->
+    <section class="hero">
+        <h2 data-i18n="hero_title">RMNCAH in Cameroon</h2>
+        <p data-i18n="hero_desc">A comprehensive portfolio detailing the strategic frameworks, health financing, and current SRMNEA-Nut indicators in Cameroon to ensure healthy human capital.</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        
+        <!-- Left Column: Content -->
+        <div class="left-column">
+            
+            <!-- Indicators Section -->
+            <section id="indicators" class="content-section">
+                <h3 class="section-title" data-i18n="sect_ind_title">Situation of RMNCAH Indicators</h3>
+                <p style="margin-bottom: 20px; color: var(--text-gray);" data-i18n="ind_intro">Despite progress, indicators remain a concern. Data based on EDS 2018 reveals important health metrics:</p>
+                
+                <div class="indicators-grid">
+                    <div class="indicator-card">
+                        <h4 data-i18n="ind_mat_title">Maternal Mortality</h4>
+                        <div class="ind-value">406</div>
+                        <p style="font-size: 0.85rem;" data-i18n="ind_mat_desc">per 100,000 live births. Reduced from 782 in 2011.</p>
+                    </div>
+                    <div class="indicator-card">
+                        <h4 data-i18n="ind_neo_title">Neonatal Mortality</h4>
+                        <div class="ind-value">28</div>
+                        <p style="font-size: 0.85rem;" data-i18n="ind_neo_desc">per 1,000 live births. Represents nearly half of infant mortality.</p>
+                    </div>
+                    <div class="indicator-card">
+                        <h4 data-i18n="ind_u5_title">Under-5 Mortality</h4>
+                        <div class="ind-value">80</div>
+                        <p style="font-size: 0.85rem;" data-i18n="ind_u5_desc">per 1,000 live births. Down from 122 in 2011.</p>
+                    </div>
+                    <div class="indicator-card">
+                        <h4 data-i18n="ind_mal_title">Malnutrition (Stunting)</h4>
+                        <div class="ind-value">29%</div>
+                        <p style="font-size: 0.85rem;" data-i18n="ind_mal_desc">Chronic malnutrition among children under 5 years.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Financing Section -->
+            <section id="financing" class="content-section">
+                <h3 class="section-title" data-i18n="sect_fin_title">Situation of Health Financing</h3>
+                <div class="finance-content">
+                    <div class="finance-chart"></div>
+                    <div class="finance-text">
+                        <p style="margin-bottom: 15px;" data-i18n="fin_text1">Health expenditure was evaluated at approximately 34,589 FCFA per capita (2018). The financing system faces challenges with high out-of-pocket costs.</p>
+                        <ul class="finance-legend">
+                            <li>
+                                <div class="legend-color" style="background: var(--primary-red);"></div>
+                                <span data-i18n="fin_leg_hh">~70% Households (Out-of-pocket)</span>
+                            </li>
+                            <li>
+                                <div class="legend-color" style="background: var(--primary-gold);"></div>
+                                <span data-i18n="fin_leg_state">~15% State / Public Admin</span>
+                            </li>
+                            <li>
+                                <div class="legend-color" style="background: var(--primary-green);"></div>
+                                <span data-i18n="fin_leg_ptf">~15% External Partners (PTF)</span>
+                            </li>
+                        </ul>
+                        <p style="margin-top: 15px; font-weight: bold; color: var(--primary-red);" data-i18n="fin_gap">The GFF Investment Case identified a financing gap of 57.3% for the 2018-2022 period.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RMNCAH Framework Section -->
+            <section id="rmncah" class="content-section">
+                <h3 class="section-title" data-i18n="sect_rmncah_title">RMNCAH Strategic Framework</h3>
+                <p style="margin-bottom: 20px;" data-i18n="rmncah_intro">The PSN-SRMNIA-Nut 2024-2030 aims to minimize mortality and morbidity through three main strategic axes:</p>
+                
+                <div class="strategy-card">
+                    <h4 data-i18n="rmncah_a1_title">Axis 1: High-Impact Interventions</h4>
+                    <p data-i18n="rmncah_a1_desc">Extending the coverage of high-impact interventions to reduce morbidity and mortality for mothers, newborns, children, and adolescents.</p>
+                </div>
+                <div class="strategy-card">
+                    <h4 data-i18n="rmncah_a2_title">Axis 2: Quality & Accessibility</h4>
+                    <p data-i18n="rmncah_a2_desc">Strengthening support activities to ensure the permanent availability, accessibility, and utilization of quality reproductive health services.</p>
+                </div>
+                <div class="strategy-card">
+                    <h4 data-i18n="rmncah_a3_title">Axis 3: Effective Mechanisms</h4>
+                    <p data-i18n="rmncah_a3_desc">Implementing efficient governance and tracking mechanisms to support the execution of the strategic plan and emergency resilience.</p>
+                </div>
+            </section>
+
+            <!-- SSS Framework Section -->
+            <section id="sss" class="content-section">
+                <h3 class="section-title" data-i18n="sect_sss_title">Sectoral Health Strategy (SSS)</h3>
+                <p style="margin-bottom: 20px;" data-i18n="sss_intro">Aligned with Vision 2035, the Sectoral Health Strategy aims to develop healthy and productive human capital. It is structured around five core pillars:</p>
+                
+                <ul style="list-style-type: square; padding-left: 20px; color: var(--text-gray); line-height: 2;">
+                    <li data-i18n="sss_p1"><strong>Health Promotion:</strong> Encouraging healthy behaviors and lifestyles.</li>
+                    <li data-i18n="sss_p2"><strong>Disease Prevention:</strong> Reducing premature mortality from preventable diseases.</li>
+                    <li data-i18n="sss_p3"><strong>Case Management:</strong> Reducing global mortality and lethality in health facilities.</li>
+                    <li data-i18n="sss_p4"><strong>Health System Strengthening:</strong> Improving infrastructure, HR, and financing.</li>
+                    <li data-i18n="sss_p5"><strong>Governance & Strategic Steering:</strong> Enhancing sector performance and accountability.</li>
+                </ul>
+            </section>
+
+        </div>
+
+        <!-- Right Column: Submissions / Action Buttons -->
+        <div class="right-column">
+            <h3 class="section-title" style="font-size: 1.4rem;" data-i18n="sect_sub_title">My Submissions</h3>
+            <div class="sidebar-buttons">
+                
+                <!-- Placeholders for actual submissions -->
+                <div class="side-btn btn-red">
+                    <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                    <span data-i18n="sub_1">RMNCAH Policy Brief</span>
+                </div>
+                
+                <div class="side-btn btn-gold">
+                    <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    <span data-i18n="sub_2">Financing Analysis</span>
+                </div>
+                
+                <div class="side-btn btn-green">
+                    <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    <span data-i18n="sub_3">Equity Profile</span>
+                </div>
+
+                <div class="side-btn btn-blue">
+                    <svg width="20" height="20" fill="var(--text-dark)" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    <span data-i18n="sub_4">GFF Data Portal</span>
+                </div>
+
+            </div>
+
+            <div class="side-link-group">
+                <a href="#" data-i18n="link_1">Country Collaborations Main Page</a>
+                <a href="#" data-i18n="link_2">Data Uptake Series</a>
+                <a href="#" data-i18n="link_3">National Health Strategy Docs</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p data-i18n="footer_text">© 2026 SRMNEA-Nut Portfolio Cameroon. Data derived from PNDS, RMET and RMNCH strategy documents.</p>
+    </footer>
+
+    <!-- JavaScript for i18n -->
     <script>
         const translations = {
-            fr: {
-                "nav.logo": "SRMNIA-Nut CMR",
-                "nav.indicators": "Indicateurs",
-                "nav.finance": "Financement"
-            },
             en: {
-                "nav.logo": "SRMNIA-Nut CMR",
-                "nav.indicators": "Indicators",
-                "nav.finance": "Financing"
+                logo_main: "Countdown to 2030",
+                logo_sub: "Women's, Children's & Adolescents' Health",
+                nav_indicators: "Indicators",
+                nav_financing: "Financing",
+                nav_rmncah: "RMNCAH Strategy",
+                nav_sss: "SSS Framework",
+                hero_title: "RMNCAH in Cameroon",
+                hero_desc: "A comprehensive portfolio detailing the strategic frameworks, health financing, and current SRMNEA-Nut indicators in Cameroon to ensure healthy human capital.",
+                sect_ind_title: "Situation of RMNCAH Indicators",
+                ind_intro: "Despite progress, indicators remain a concern. Data based on EDS 2018 reveals important health metrics:",
+                ind_mat_title: "Maternal Mortality",
+                ind_mat_desc: "per 100,000 live births. Reduced from 782 in 2011.",
+                ind_neo_title: "Neonatal Mortality",
+                ind_neo_desc: "per 1,000 live births. Represents nearly half of infant mortality.",
+                ind_u5_title: "Under-5 Mortality",
+                ind_u5_desc: "per 1,000 live births. Down from 122 in 2011.",
+                ind_mal_title: "Malnutrition (Stunting)",
+                ind_mal_desc: "Chronic malnutrition among children under 5 years.",
+                sect_fin_title: "Situation of Health Financing",
+                fin_text1: "Health expenditure was evaluated at approximately 34,589 FCFA per capita (2018). The financing system faces challenges with high out-of-pocket costs.",
+                fin_leg_hh: "~70% Households (Out-of-pocket)",
+                fin_leg_state: "~15% State / Public Admin",
+                fin_leg_ptf: "~15% External Partners (PTF)",
+                fin_gap: "The GFF Investment Case identified a financing gap of 57.3% for the 2018-2022 period.",
+                sect_rmncah_title: "RMNCAH Strategic Framework",
+                rmncah_intro: "The PSN-SRMNIA-Nut 2024-2030 aims to minimize mortality and morbidity through three main strategic axes:",
+                rmncah_a1_title: "Axis 1: High-Impact Interventions",
+                rmncah_a1_desc: "Extending the coverage of high-impact interventions to reduce morbidity and mortality for mothers, newborns, children, and adolescents.",
+                rmncah_a2_title: "Axis 2: Quality & Accessibility",
+                rmncah_a2_desc: "Strengthening support activities to ensure the permanent availability, accessibility, and utilization of quality reproductive health services.",
+                rmncah_a3_title: "Axis 3: Effective Mechanisms",
+                rmncah_a3_desc: "Implementing efficient governance and tracking mechanisms to support the execution of the strategic plan and emergency resilience.",
+                sect_sss_title: "Sectoral Health Strategy (SSS)",
+                sss_intro: "Aligned with Vision 2035, the Sectoral Health Strategy aims to develop healthy and productive human capital. It is structured around five core pillars:",
+                sss_p1: "<strong>Health Promotion:</strong> Encouraging healthy behaviors and lifestyles.",
+                sss_p2: "<strong>Disease Prevention:</strong> Reducing premature mortality from preventable diseases.",
+                sss_p3: "<strong>Case Management:</strong> Reducing global mortality and lethality in health facilities.",
+                sss_p4: "<strong>Health System Strengthening:</strong> Improving infrastructure, HR, and financing.",
+                sss_p5: "<strong>Governance & Strategic Steering:</strong> Enhancing sector performance and accountability.",
+                sect_sub_title: "My Submissions",
+                sub_1: "RMNCAH Policy Brief",
+                sub_2: "Financing Analysis",
+                sub_3: "Equity Profile",
+                sub_4: "GFF Data Portal",
+                link_1: "Country Collaborations Main Page",
+                link_2: "Data Uptake Series",
+                link_3: "National Health Strategy Docs",
+                footer_text: "© 2026 SRMNEA-Nut Portfolio Cameroon. Data derived from PNDS, RMET and RMNCH strategy documents."
+            },
+            fr: {
+                logo_main: "Femmes et jeunes filles",
+                logo_sub: "Santé de la Femme, de l'Enfant et de l'Adolescent",
+                nav_indicators: "Indicateurs",
+                nav_financing: "Financement",
+                nav_rmncah: "Stratégie SRMNEA",
+                nav_sss: "Cadre SSS",
+                hero_title: "SRMNEA-Nut au Cameroun",
+                hero_desc: "Un portfolio complet détaillant les cadres stratégiques, le financement de la santé et les indicateurs actuels de la SRMNEA-Nut au Cameroun pour garantir un capital humain sain.",
+                sect_ind_title: "Situation des Indicateurs SRMNEA",
+                ind_intro: "Malgré les progrès, les indicateurs restent préoccupants. Les données basées sur l'EDS 2018 révèlent des métriques de santé importantes :",
+                ind_mat_title: "Mortalité Maternelle",
+                ind_mat_desc: "pour 100 000 naissances vivantes. Réduit de 782 en 2011.",
+                ind_neo_title: "Mortalité Néonatale",
+                ind_neo_desc: "pour 1 000 naissances vivantes. Représente près de la moitié de la mortalité infantile.",
+                ind_u5_title: "Mortalité Infanto-juvénile",
+                ind_u5_desc: "pour 1 000 naissances vivantes. En baisse par rapport à 122 en 2011.",
+                ind_mal_title: "Malnutrition (Retard de croissance)",
+                ind_mal_desc: "Malnutrition chronique chez les enfants de moins de 5 ans.",
+                sect_fin_title: "Situation du Financement de la Santé",
+                fin_text1: "Les dépenses de santé ont été évaluées à environ 34 589 FCFA par habitant (2018). Le système de financement fait face à des défis avec des coûts directs élevés.",
+                fin_leg_hh: "~70% Ménages (Paiements directs)",
+                fin_leg_state: "~15% État / Admin. Publique",
+                fin_leg_ptf: "~15% Partenaires Techniques (PTF)",
+                fin_gap: "Le Dossier d'Investissement GFF a identifié un déficit de financement de 57,3% pour la période 2018-2022.",
+                sect_rmncah_title: "Cadre Stratégique SRMNEA-Nut",
+                rmncah_intro: "Le PSN-SRMNIA-Nut 2024-2030 vise à minimiser la mortalité et la morbidité à travers trois axes stratégiques principaux :",
+                rmncah_a1_title: "Axe 1 : Interventions à Haut Impact",
+                rmncah_a1_desc: "Extension de la couverture des interventions à haut impact pour réduire la morbidité et la mortalité des mères, nouveau-nés, enfants et adolescents.",
+                rmncah_a2_title: "Axe 2 : Qualité et Accessibilité",
+                rmncah_a2_desc: "Renforcement des activités de soutien pour assurer la disponibilité permanente, l'accessibilité et l'utilisation de services de santé de qualité.",
+                rmncah_a3_title: "Axe 3 : Mécanismes Efficaces",
+                rmncah_a3_desc: "Mise en place de mécanismes de gouvernance et de suivi efficaces pour accompagner la mise en œuvre du plan stratégique.",
+                sect_sss_title: "Stratégie Sectorielle de Santé (SSS)",
+                sss_intro: "Alignée sur la Vision 2035, la Stratégie Sectorielle de Santé vise à développer un capital humain sain et productif. Elle s'articule autour de cinq piliers :",
+                sss_p1: "<strong>Promotion de la Santé :</strong> Encourager des comportements et modes de vie sains.",
+                sss_p2: "<strong>Prévention de la Maladie :</strong> Réduire la mortalité prématurée due aux maladies évitables.",
+                sss_p3: "<strong>Prise en charge des cas :</strong> Réduire la mortalité globale et la létalité dans les formations sanitaires.",
+                sss_p4: "<strong>Renforcement du Système de Santé :</strong> Améliorer les infrastructures, les RH et le financement.",
+                sss_p5: "<strong>Gouvernance et Pilotage :</strong> Améliorer la performance et la redevabilité du secteur.",
+                sect_sub_title: "Mes Soumissions",
+                sub_1: "Note Politique SRMNEA",
+                sub_2: "Analyse du Financement",
+                sub_3: "Profil d'Équité",
+                sub_4: "Portail de Données GFF",
+                link_1: "Page Principale des Collaborations Pays",
+                link_2: "Série sur l'Utilisation des Données",
+                link_3: "Documents Stratégiques Nationaux",
+                footer_text: "© 2026 Portfolio SRMNEA-Nut Cameroun. Données tirées des documents PNDS, RMET et stratégie RMNCH."
             }
         };
 
-        function setLanguage(lang, btnElement) {
-            // Mise à jour du texte
-            document.querySelectorAll('[data-i18n]').forEach(el => {
+        function setLanguage(lang) {
+            // Update active button state
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-fr').classList.remove('active');
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            // Update text content
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {
-                    el.innerText = translations[lang][key];
+                    el.innerHTML = translations[lang][key];
                 }
             });
-
-            // Mise à jour de l'état visuel des boutons
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
-            
-            // Mise à jour de l'attribut lang du document
-            document.documentElement.lang = lang;
         }
     </script>
 </body>
